@@ -223,7 +223,6 @@ When tests are run this way:
     ...     print(e) # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
     Traceback (most recent call last):
     ...
-    DocTestFailureException: 
     ----------------------------------------------------------------------
     File "...doc3.ex", line 1, in doc3.ex
     Failed example:
