@@ -211,7 +211,11 @@ When tests are run this way:
 
     >>> sys.stdout.writeln = lambda s: sys.stdout.write(s+'\n')
     >>> suite = loader.loadTestsFromTestCase(MyTest)
-    >>> result = suite.run(unittest.TextTestResult(sys.stdout, True, 3))
+    >>> try:
+    ...     from unittest import TextTestResult
+    ... except ImportError:
+    ...     from unittest import _TextTestResult as TextTestResult
+    >>> result = suite.run(TextTestResult(sys.stdout, True, 3))
     test1 (tests.MyTest) ... ok
     test2 (tests.MyTest) ... ok
     test3 (tests.MyTest) ... FAIL
