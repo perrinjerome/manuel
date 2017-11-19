@@ -151,11 +151,110 @@ The suite can be either a :class:`manuel.testing.TestSuite` object or a
 Others
 ------
 
-If you know out how to make Manuel work with other test runners (nose, py.test,
-etc.), please `send me an email`_ and I'll expand this section.
+To use another test runner, like nose or py.test:
 
-.. _send me an email: benji+manuel@benjiyork.com
+.. setup __name__ and __file__
 
+   >>> import manuel
+   >>> __name__ = 'tests'
+   >>> __file__ = manuel.__file__
+
+.. code-block:: python
+
+    import manuel.codeblock
+    import manuel.doctest
+    import manuel.testing
+
+    m = manuel.doctest.Manuel()
+    m += manuel.codeblock.Manuel()
+    manueltest = manuel.testing.TestFactory(m)
+
+    class MyTest(unittest.TestCase):
+
+        def setUp(self):
+            self.a = 1
+            self.globs = dict(c=9)
+
+        test1 = manueltest('doc1.ex')
+
+        @manueltest('doc2.ex')
+        def test2(self):
+            self.x = 5
+
+        test3 = manueltest('doc3.ex')
+
+Here, we instantiated `TestFactory` with a `Manuel` instance to
+create `manueltest`, which is a factory for creating Manuel-based
+tests using on the given Manuel instance.  We then used that to create
+3 tests.
+
+The first and thirs tests just execute tests in the named files,
+`doc1.ex` and `doc3.ex`.  The class' `setUp` method is used to set up
+the test.
+
+The second test also executes tests in a named file, `doc2.ex`, but it
+decorates a function that provides additional setup code that runs
+after the class setup code.
+
+When tests are run this way:
+
+- The test globals contain the test instance in the `test` variable.
+
+- If a test case defines a `globs` attribute, it must be a dictionary
+  and it's contents are added to the test globals.
+
+.. We can run these tests with the ``unittest`` test runner.
+
+    >>> loader = unittest.TestLoader()
+    >>> import sys
+
+
+    >>> sys.stdout.writeln = lambda s: sys.stdout.write(s+'\n')
+    >>> suite = loader.loadTestsFromTestCase(MyTest)
+    >>> result = suite.run(unittest.TextTestResult(sys.stdout, True, 3))
+    test1 (tests.MyTest) ... ok
+    test2 (tests.MyTest) ... ok
+    test3 (tests.MyTest) ... FAIL
+
+    >>> for _, e in result.errors:
+    ...     print(e); print
+
+    >>> for c, e in result.failures:
+    ...     print(e) # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    Traceback (most recent call last):
+    ...
+    DocTestFailureException: 
+    ----------------------------------------------------------------------
+    File "...doc3.ex", line 1, in doc3.ex
+    Failed example:
+        1
+    Expected:
+        2
+    Got:
+        1
+    <BLANKLINE>
+    <BLANKLINE>
+
+    Check meta data:
+
+    >>> MyTest.test1.__name__
+    'test_doc1'
+    >>> import os, manuel
+    >>> (MyTest.test1.filepath ==
+    ...  os.path.join(os.path.dirname(manuel.__file__), 'doc1.ex'))
+    True
+    >>> MyTest.test1.filename
+    'doc1.ex'
+
+    >>> (MyTest.test2.filepath ==
+    ...  os.path.join(os.path.dirname(manuel.__file__), 'doc2.ex'))
+    True
+    >>> MyTest.test2.filename
+    'doc2.ex'
+
+    Having __name__ around breaks other manuel tests, for some reason.
+
+    >>> del __name__
 
 Customizing the TestCase class
 ------------------------------
