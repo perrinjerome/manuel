@@ -151,7 +151,7 @@ The suite can be either a :class:`manuel.testing.TestSuite` object or a
 Others
 ------
 
-To use another test runner, like nose or py.test:
+To use another test runner, like nose or pytest:
 
 .. setup __name__ and __file__
 
