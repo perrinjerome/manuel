@@ -1,14 +1,18 @@
 from __future__ import absolute_import
 
 import doctest as real_doctest
+import functools
 import inspect
 import itertools
 import manuel
 import os.path
+import re
 import sys
+import types
 import unittest
 
-__all__ = ['TestSuite']
+
+__all__ = ['TestSuite', 'TestFactory']
 
 class TestCaseMarker(object):
 
@@ -184,3 +188,46 @@ def TestSuite(m, *paths, **kws):
             suite.addTest(TestCase_class(m, regions, globs, **kws))
 
     return suite
+
+
+_not_word = re.compile(r'\W')
+class TestFactory:
+
+    def __init__(self, m):
+        self.m = m
+
+    def __call__(self, path):
+        base = os.path.dirname(os.path.abspath(
+            sys._getframe(2).f_globals['__file__']
+            ))
+        path = os.path.join(base, path)
+        with open(path) as f:
+            test = f.read()
+
+        m = self.m
+
+        def test_file(self, setup=lambda i: None):
+            if isinstance(self, types.FunctionType):
+                # We're being used as a decorator. `self` is a setup method.
+                f = functools.wraps(self)(lambda inst: test_file(inst, self))
+                f.filepath = path
+                f.filename = os.path.basename(path)
+                return f
+
+            setup(self)
+            globs = dict(getattr(self, 'globs', ()))
+            globs['test'] = self
+            document = manuel.Document(test, location=path)
+            document.parse_with(m)
+            [regions] = group_regions_by_test_case(document)
+            TestCase(m, regions, globs).runTest()
+
+        test_file.filepath = path
+        test_file.filename = filename = os.path.basename(path)
+        name = _not_word.sub('_', os.path.splitext(filename)[0])
+        if not name.startswith('test'):
+            name = 'test_' + name
+
+        test_file.__name__ = name
+
+        return test_file
