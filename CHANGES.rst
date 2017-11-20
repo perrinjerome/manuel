@@ -4,7 +4,12 @@ CHANGES
 1.9.0 (unreleased)
 ------------------
 
-- Added support for Python 3.5.
+- You can now use Manuel with the `nose
+  <http://nose.readthedocs.io/en/latest/>`_ and `pytest
+  <https://docs.pytest.org/en/latest/>`_ test runners by defining
+  Manuel tests inside `unittest.TestCase` classes.
+- Added support for Python 3.5 and Python 3.6.
+- Dropped support for Python 2.6
 
 1.8.0 (2014-07-15)
 ------------------
