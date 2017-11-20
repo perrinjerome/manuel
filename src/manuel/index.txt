@@ -188,7 +188,7 @@ create `manueltest`, which is a factory for creating Manuel-based
 tests using on the given Manuel instance.  We then used that to create
 3 tests.
 
-The first and thirs tests just execute tests in the named files,
+The first and third tests just execute tests in the named files,
 `doc1.ex` and `doc3.ex`.  The class' `setUp` method is used to set up
 the test.
 
