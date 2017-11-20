@@ -208,6 +208,7 @@ class TestFactory:
 
         def test_file(self, setup=lambda i: None):
             if isinstance(self, types.FunctionType):
+                # We're being used as a decorator. `self` is a setup method.
                 f = functools.wraps(self)(lambda inst: test_file(inst, self))
                 f.filepath = path
                 f.filename = os.path.basename(path)
