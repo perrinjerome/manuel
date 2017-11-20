@@ -1,3 +1,4 @@
+recursive-include src *.ex
 recursive-include src *.txt
 recursive-include docs *
 recursive-include sphinx *.py
