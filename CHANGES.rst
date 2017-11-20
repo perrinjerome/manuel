@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-1.9.0 (unreleased)
+1.9.0 (2017-11-20)
 ------------------
 
 - You can now use Manuel with the `nose
