@@ -8,7 +8,7 @@ jobs:
   build:
     working_directory: ~/repo
 
-    machine: true
+    docker: true
 
     steps:
       - checkout
