@@ -1,0 +1,31 @@
+# Python CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-python/ for more details
+#
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/repo
+
+    machine: true
+
+    depencencies:
+        pre:
+        - sudo apt update
+        - sudo apt-get --only-upgrade install tox
+
+    steps:
+      - checkout
+
+      - run:
+          name: Run Tests
+          command: python setup.py test
+
+      - run:
+          name: Tox
+          command: tox
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
