@@ -8,6 +8,8 @@ jobs:
   build:
     working_directory: ~/repo
 
+    machine: true
+
     steps:
       - checkout
       - run: sudo apt update
