@@ -8,7 +8,8 @@ jobs:
   build:
     working_directory: ~/repo
 
-    docker: true
+    docker:
+      - image: circleci/python:3.6.4
 
     steps:
       - checkout
