@@ -25,4 +25,4 @@ jobs:
 
       - run:
           command: |
-            tox -e py27 py33 py34 py36 pypy
+            tox -e py27,py33,py34,py36,pypy
