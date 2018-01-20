@@ -4,24 +4,19 @@
 #
 version: 2
 
-machine: true
-
-depencencies:
-    pre:
-     - sudo apt update
-     - sudo apt-get --only-upgrade install tox
-
 jobs:
   build:
+    machine: true
+
+    depencencies:
+        pre:
+        - sudo apt update
+        - sudo apt-get --only-upgrade install tox
+
     working_directory: ~/repo
 
     steps:
       - checkout
-
-      - run:
-          name: run tests
-          command: |
-            python setup.py test
 
       - store_artifacts:
           path: test-reports
