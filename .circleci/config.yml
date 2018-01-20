@@ -13,16 +13,22 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt update
-      - run: sudo apt-get install python-tox
-      - run: sudo apt-get install python3.3
-      - run: sudo apt-get install python3.4
-      - run: sudo apt-get install pypy
+      - run:
+          name: Install Dependencies
+          command: |
+            sudo apt update
+            sudo apt-get install python-tox
+            sudo apt-get install python3.3
+            sudo apt-get install python3.4
+            sudo apt-get install pypy
+            sudo pip install setuptools
+
       - run:
           name: Run Tests
           command: |
             python setup.py test
 
       - run:
+          name: Run Tox
           command: |
             tox -e py27,py33,py34,pypy
