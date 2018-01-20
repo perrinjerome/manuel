@@ -17,7 +17,7 @@ jobs:
           name: update tox
           command: |
             sudo apt update
-            sudo apt upgrade tox
+            sudo apt-get --only-upgrade install tox
 
       - run:
           name: run tests
