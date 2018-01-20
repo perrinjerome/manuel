@@ -6,14 +6,14 @@ version: 2
 
 jobs:
   build:
+    working_directory: ~/repo
+
     machine: true
 
     depencencies:
         pre:
         - sudo apt update
         - sudo apt-get --only-upgrade install tox
-
-    working_directory: ~/repo
 
     steps:
       - checkout
