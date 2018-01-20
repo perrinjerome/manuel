@@ -3,6 +3,9 @@
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
 version: 2
+
+machine: true
+
 depencencies:
     pre:
      - sudo apt update
@@ -10,8 +13,6 @@ depencencies:
 
 jobs:
   build:
-    machine: true
-
     working_directory: ~/repo
 
     steps:
