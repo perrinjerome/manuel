@@ -14,6 +14,11 @@ jobs:
       - checkout
       - run: sudo apt update
       - run: sudo apt-get install python-tox
+      - run: sudo apt-get install python3.3
+      - run: sudo apt-get install python3.4
+      - run: sudo apt-get install python3.5
+      - run: sudo apt-get install python3.6
+      - run: sudo apt-get install pypy
       - run:
           name: Run Tests
           command: |
