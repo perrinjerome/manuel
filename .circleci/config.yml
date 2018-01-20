@@ -21,7 +21,7 @@ jobs:
             sudo apt-get install python3.3
             sudo apt-get install python3.4
             sudo apt-get install pypy
-            sudo pip install setuptools
+            sudo pip install python3-setuptools
 
       - run:
           name: Run Tests
