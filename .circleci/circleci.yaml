@@ -10,8 +10,7 @@ depencencies:
 
 jobs:
   build:
-    docker:
-      - image: circleci/python:3.6.1
+    machine: true
 
     working_directory: ~/repo
 
