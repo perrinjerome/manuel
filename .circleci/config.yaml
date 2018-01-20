@@ -8,6 +8,8 @@ jobs:
   build:
     working_directory: ~/repo
 
+    machine: true
+
     depencencies:
         pre:
         - sudo apt update
