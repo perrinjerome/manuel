@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - run: sudo apt update
-      - run: sudo apt-get --only-upgrade install tox
+      - run: sudo apt-get install python-tox
       - run:
           name: Run Tests
           command: |
