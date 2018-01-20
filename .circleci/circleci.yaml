@@ -14,14 +14,10 @@ jobs:
       - checkout
 
       - run:
-          name: update tox
+          name: run tests
           command: |
             sudo apt update
             sudo apt-get --only-upgrade install tox
-
-      - run:
-          name: run tests
-          command: |
             python setup.py test
 
       - store_artifacts:
