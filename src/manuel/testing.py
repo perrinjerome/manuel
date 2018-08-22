@@ -5,6 +5,7 @@ import functools
 import inspect
 import itertools
 import manuel
+import io
 import os.path
 import re
 import sys
@@ -179,9 +180,13 @@ def TestSuite(m, *paths, **kws):
             abs_path = \
                 os.path.abspath(_module_relative_path(calling_module, path))
 
-        with open(abs_path, 'U') as fp:
+        with io.open(abs_path, 'rt', newline=None) as fp:
+            contents = fp.read()
+            if not isinstance(contents, str):
+                # Python 2, we read unicode, but we really need a str
+                contents = str.encode("utf-8")
             document = manuel.Document(
-                fp.read(), location=abs_path)
+                contents, location=abs_path)
         document.parse_with(m)
 
         for regions in group_regions_by_test_case(document):
