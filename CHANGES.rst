@@ -4,7 +4,7 @@ CHANGES
 1.9.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix DeprecationWarning about 'U' mode under Python 3.
 
 
 1.9.0 (2017-11-20)
