@@ -779,7 +779,7 @@ We can see that when executed, the SyntaxError escapes.
       File "<memory>:4", line 2
          def foo:
                 ^
-    SyntaxError: invalid syntax
+    SyntaxError: invalid syntax...
 
 The :mod:`manuel.ignore` module provides a way to ignore parts of a document
 using a directive ".. ignore-next-block".

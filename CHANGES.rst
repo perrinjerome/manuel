@@ -6,6 +6,8 @@ CHANGES
 
 - Fix DeprecationWarning about 'U' mode under Python 3.
 
+- Add support for Python 3.7 and PyPy3.
+
 
 1.9.0 (2017-11-20)
 ------------------
