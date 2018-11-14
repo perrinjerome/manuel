@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-1.10.0 (unreleased)
+1.10.0 (2018-11-14)
 -------------------
 
 - Fix DeprecationWarning about 'U' mode under Python 3.
