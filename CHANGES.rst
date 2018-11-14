@@ -1,11 +1,12 @@
 CHANGES
 =======
 
-1.9.1 (unreleased)
-------------------
+1.10.0 (unreleased)
+-------------------
 
 - Fix DeprecationWarning about 'U' mode under Python 3.
-
+- Drop Python 2.7 and 3.3 support. Add testing and support for Python 3.6 and
+  3.7.
 
 1.9.0 (2017-11-20)
 ------------------
