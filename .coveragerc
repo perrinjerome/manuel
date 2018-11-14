@@ -1,0 +1,9 @@
+[run]
+branch = True
+source = manuel
+omit = */test*
+
+[report]
+show_missing = true
+exclude_lines =
+    pragma: no cover

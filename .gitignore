@@ -8,3 +8,6 @@ parts/
 *.pyc
 __pycache__/
 .tox/
+.coverage
+coverage.xml
+htmlcov
