@@ -6,3 +6,6 @@ include *.rst
 include tox.ini
 include bootstrap.py
 include buildout.cfg
+include *.yaml
+include .coveragerc
+include .circleci/*
