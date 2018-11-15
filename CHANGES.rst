@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-1.10.1 (unreleased)
+1.10.1 (2018-11-15)
 -------------------
 
 - Add support for PyPy3.
