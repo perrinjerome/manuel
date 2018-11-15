@@ -23,6 +23,9 @@ checker = zope.testing.renormalizing.RENormalizing([
     # PyPy's default __repr__ is slightly different
     (re.compile(r"<__builtin__\.(Table|TableError|NumbersTest|NumbersResult) object"),
      r"<\1 object"),
+    # PyPy3's default __repr__ is slightly different
+    (re.compile(r"<builtins\.(Table|TableError|NumbersTest|NumbersResult) object"),
+     r"<\1 object"),
     (re.compile(r"<SRE_Match object"),
      r"<_sre.SRE_Match object"),
 ])

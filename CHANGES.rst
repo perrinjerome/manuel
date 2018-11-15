@@ -4,8 +4,7 @@ CHANGES
 1.10.1 (unreleased)
 -------------------
 
-- Nothing changed yet.
-
+- Add support for PyPy3.
 
 1.10.0 (2018-11-14)
 -------------------

@@ -15,7 +15,8 @@ matrix:
           sudo: true
         - os: linux
           python: pypy
-
+        - os: linux
+          python: pypy3
 install:
     - travis_retry pip install .
     - travis_retry pip install coverage coveralls zope.testing
