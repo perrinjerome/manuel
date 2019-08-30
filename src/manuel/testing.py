@@ -184,7 +184,7 @@ def TestSuite(m, *paths, **kws):
             contents = fp.read()
             if not isinstance(contents, str):
                 # Python 2, we read unicode, but we really need a str
-                contents = str.encode("utf-8")
+                contents = contents.encode("utf-8")
             document = manuel.Document(
                 contents, location=abs_path)
         document.parse_with(m)

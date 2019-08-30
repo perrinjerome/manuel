@@ -4,7 +4,8 @@ CHANGES
 1.10.2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix test detection in Python 2 which was broken since 1.10.0.
+  (`#20 <https://github.com/benji-york/manuel/issues/20>`_)
 
 
 1.10.1 (2018-11-15)
