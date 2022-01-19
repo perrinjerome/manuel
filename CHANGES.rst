@@ -6,6 +6,7 @@ CHANGES
 
 - Fix test detection in Python 2 which was broken since 1.10.0.
   (`#20 <https://github.com/benji-york/manuel/issues/20>`_)
+- Add Python 3.9 and 3.10 to tox config.
 
 
 1.10.1 (2018-11-15)
@@ -13,12 +14,14 @@ CHANGES
 
 - Add support for PyPy3.
 
+
 1.10.0 (2018-11-14)
 -------------------
 
 - Fix DeprecationWarning about 'U' mode under Python 3.
 - Drop Python 2.6 and 3.3 support. Add testing and support for Python 3.6 and
   3.7.
+
 
 1.9.0 (2017-11-20)
 ------------------
@@ -30,6 +33,7 @@ CHANGES
 - Added support for Python 3.5 and Python 3.6.
 - Dropped support for Python 2.6
 
+
 1.8.0 (2014-07-15)
 ------------------
 
@@ -38,6 +42,7 @@ CHANGES
 - Drop official support for Python 3.1 and 3.2.
 - Fix odd ImportError problems when used with tox and coverage.
 - Fix parsing of reST codeblock options with hyphens.
+
 
 1.7.2 (2013-03-16)
 ------------------
