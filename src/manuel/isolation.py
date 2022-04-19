@@ -1,11 +1,12 @@
-import re
 import manuel
+import re
 import textwrap
 
 RESET = re.compile(r'^\.\.\s*reset-globs\s*$', re.MULTILINE)
 CAPTURE = re.compile(r'^\.\.\s*capture-globs\s*$', re.MULTILINE)
 
 baseline = {}
+
 
 class Reset(object):
     pass
@@ -48,5 +49,6 @@ def execute_baseline(region, document, globs):
 
 class Manuel(manuel.Manuel):
     def __init__(self):
-        manuel.Manuel.__init__(self, [find_reset, find_baseline],
-            [execute_reset, execute_baseline])
+        manuel.Manuel.__init__(
+            self, [find_reset, find_baseline], [execute_reset, execute_baseline]
+        )

@@ -1,10 +1,9 @@
-import re
 import manuel
+import re
 
 FOOTNOTE_REFERENCE_LINE_RE = re.compile(r'^.*\[([^\]]+)]_.*$', re.MULTILINE)
 FOOTNOTE_REFERENCE_RE = re.compile(r'\[([^\]]+)]_')
-FOOTNOTE_DEFINITION_RE = re.compile(
-    r'^\.\.\s*\[\s*([^\]]+)\s*\].*$', re.MULTILINE)
+FOOTNOTE_DEFINITION_RE = re.compile(r'^\.\.\s*\[\s*([^\]]+)\s*\].*$', re.MULTILINE)
 END_OF_FOOTNOTE_RE = re.compile(r'^\S.*$', re.MULTILINE)
 
 
@@ -43,8 +42,7 @@ def find_footnote_references(document):
 
 @manuel.timing(manuel.LATE)
 def do_footnotes(document):
-    """Copy footnoted items into their appropriate position.
-    """
+    """Copy footnoted items into their appropriate position."""
     # first find all the regions that are in footnotes
     footnotes = {}
     name = None

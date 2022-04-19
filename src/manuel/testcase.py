@@ -9,6 +9,7 @@ SECTION_TITLE = re.compile(r'^.+$', re.MULTILINE)
 SECTION_UNDERLINE = re.compile('^[' + punctuation + ']+\s*$', re.MULTILINE)
 MARKER = re.compile(r'^.. test-case: (\S+)', re.MULTILINE)
 
+
 def find_section_headers(document):
     for region in document.find_regions(SECTION_TITLE, SECTION_UNDERLINE):
         # regions that represent titles will have two lines

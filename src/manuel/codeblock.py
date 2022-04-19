@@ -1,10 +1,11 @@
-import re
 import manuel
+import re
 import textwrap
 
 CODEBLOCK_START = re.compile(
     r'(^\.\.\s*(invisible-)?code(-block)?::?\s*python\b(?:\s*\:[\w-]+\:.*\n)*)',
-    re.MULTILINE)
+    re.MULTILINE,
+)
 CODEBLOCK_END = re.compile(r'(\n\Z|\n(?=\S))')
 
 
@@ -29,7 +30,7 @@ def execute_code_block(region, document, globs):
         return
 
     exec(region.parsed.code, globs)
-    del globs['__builtins__'] # exec adds __builtins__, we don't want it
+    del globs['__builtins__']  # exec adds __builtins__, we don't want it
 
 
 class Manuel(manuel.Manuel):

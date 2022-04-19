@@ -3,26 +3,24 @@ from __future__ import absolute_import
 import doctest as real_doctest
 import functools
 import inspect
+import io
 import itertools
 import manuel
-import io
 import os.path
 import re
 import sys
 import types
 import unittest
 
-
 __all__ = ['TestSuite', 'TestFactory']
 
-class TestCaseMarker(object):
 
+class TestCaseMarker(object):
     def __init__(self, id=''):
         self.id = id
 
 
 class TestCase(unittest.TestCase):
-
     def __init__(self, m, regions, globs, setUp=None, tearDown=None):
         unittest.TestCase.__init__(self)
         self.manuel = m
@@ -44,9 +42,10 @@ class TestCase(unittest.TestCase):
         self.regions.format_with(self.manuel)
         results = [r.formatted for r in self.regions if r.formatted]
         if results:
-            DIVIDER = '-'*70 + '\n'
+            DIVIDER = '-' * 70 + '\n'
             raise real_doctest.DocTestCase.failureException(
-                '\n' + DIVIDER + DIVIDER.join(results))
+                '\n' + DIVIDER + DIVIDER.join(results)
+            )
 
     def debug(self):
         self.setUp()
@@ -73,7 +72,7 @@ def group_regions_by_test_case(document):
     while True:
         accumulated_regions = manuel.RegionContainer()
         while True:
-            region = None # being defensive
+            region = None  # being defensive
             try:
                 region = next(document_iter)
             except StopIteration:
@@ -106,6 +105,7 @@ def group_regions_by_test_case(document):
         # put the region we peeked at back so the inner loop can consume it
         document_iter = itertools.chain([region], document_iter)
 
+
 # copied from zope.testing.doctest
 def _module_relative_path(module, path):
     if not inspect.ismodule(module):
@@ -119,14 +119,17 @@ def _module_relative_path(module, path):
         basedir = os.path.split(module.__file__)[0]
     elif module.__name__ == '__main__':
         # An interactive session.
-        if len(sys.argv)>0 and sys.argv[0] != '':
+        if len(sys.argv) > 0 and sys.argv[0] != '':
             basedir = os.path.split(sys.argv[0])[0]
         else:
             basedir = os.curdir
     else:
         # A module w/o __file__ (this includes builtins)
-        raise ValueError("Can't resolve paths relative to the module " +
-                         module + " (it has no __file__)")
+        raise ValueError(
+            "Can't resolve paths relative to the module "
+            + module
+            + " (it has no __file__)"
+        )
 
     # Combine the base directory and the path.
     return os.path.join(basedir, *(path.split('/')))
@@ -166,8 +169,7 @@ def TestSuite(m, *paths, **kws):
     # walk up the stack frame to find the module that called this function
     for depth in range(1, 5):
         try:
-            calling_module = \
-                sys.modules[sys._getframe(depth).f_globals['__name__']]
+            calling_module = sys.modules[sys._getframe(depth).f_globals['__name__']]
         except KeyError:
             continue
         else:
@@ -177,16 +179,14 @@ def TestSuite(m, *paths, **kws):
         if os.path.isabs(path):
             abs_path = os.path.normpath(path)
         else:
-            abs_path = \
-                os.path.abspath(_module_relative_path(calling_module, path))
+            abs_path = os.path.abspath(_module_relative_path(calling_module, path))
 
         with io.open(abs_path, 'rt', newline=None) as fp:
             contents = fp.read()
             if not isinstance(contents, str):
                 # Python 2, we read unicode, but we really need a str
                 contents = contents.encode("utf-8")
-            document = manuel.Document(
-                contents, location=abs_path)
+            document = manuel.Document(contents, location=abs_path)
         document.parse_with(m)
 
         for regions in group_regions_by_test_case(document):
@@ -196,15 +196,14 @@ def TestSuite(m, *paths, **kws):
 
 
 _not_word = re.compile(r'\W')
-class TestFactory:
 
+
+class TestFactory:
     def __init__(self, m):
         self.m = m
 
     def __call__(self, path):
-        base = os.path.dirname(os.path.abspath(
-            sys._getframe(2).f_globals['__file__']
-            ))
+        base = os.path.dirname(os.path.abspath(sys._getframe(2).f_globals['__file__']))
         path = os.path.join(base, path)
         with open(path) as f:
             test = f.read()
