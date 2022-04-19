@@ -97,7 +97,7 @@ black:
 
 .PHONY: isort
 isort:
-	$(isort) $(source_code) --diff --check
+	$(isort) $(source_code)
 
 ########################################################################################
 # Cleanup targets
