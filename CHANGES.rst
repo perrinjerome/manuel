@@ -1,12 +1,13 @@
 CHANGES
 =======
 
-1.10.2 (unreleased)
+1.11.0 (unreleased)
 -------------------
 
 - Fix test detection in Python 2 which was broken since 1.10.0.
   (`#20 <https://github.com/benji-york/manuel/issues/20>`_)
 - Add Python 3.9 and 3.10 to tox config.
+- Add a Makefile to centeralized development activities.
 
 
 1.10.1 (2018-11-15)
