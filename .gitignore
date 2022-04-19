@@ -10,4 +10,6 @@ __pycache__/
 .tox/
 .coverage
 coverage.xml
+.eggs/
 htmlcov
+ve/
