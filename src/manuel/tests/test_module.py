@@ -4,6 +4,7 @@ import doctest
 import manuel
 import manuel.capture
 import manuel.codeblock
+import manuel.myst.codeblock
 import manuel.doctest
 import manuel.ignore
 import manuel.testcase
@@ -67,8 +68,8 @@ def turtle_on_the_bottom_test():
     """
 
 
-def test_suite():
-    tests = ['index.txt', 'table-example.txt', 'README.txt', 'bugs.txt', 'capture.txt']
+def test_suite_rst():
+    tests = ['doctests/rst/index.txt', 'doctests/rst/table-example.txt', 'doctests/rst/README.txt', 'doctests/rst/bugs.txt', 'doctests/rst/capture.txt']
 
     optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
 
@@ -77,6 +78,31 @@ def test_suite():
     m += manuel.codeblock.Manuel()
     m += manuel.capture.Manuel()
     m += manuel.testcase.SectionManuel()
+    # The apparently redundant "**dict()" is to make this code compatible with
+    # Python 2.5 -- it would generate a SyntaxError otherwise.
+    suite = manuel.testing.TestSuite(
+        m, *tests, **dict(globs={'path_to_test': os.path.join(here, 'doctests/rst/bugs.txt')})
+    )
+
+    return unittest.TestSuite(
+        (
+            suite,
+            doctest.DocTestSuite(),
+        )
+    )
+
+
+def test_suite_myst():
+    tests = ['doctests/myst/myst-markdown.md']
+    print("*** test_suite_myst. tests", tests)
+
+    optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
+
+    # m = manuel.ignore.Manuel()
+    m = manuel.doctest.Manuel(optionflags=optionflags, checker=checker)
+    m += manuel.myst.codeblock.Manuel()
+    # m += manuel.capture.Manuel()
+    # m += manuel.testcase.SectionManuel()
     # The apparently redundant "**dict()" is to make this code compatible with
     # Python 2.5 -- it would generate a SyntaxError otherwise.
     suite = manuel.testing.TestSuite(

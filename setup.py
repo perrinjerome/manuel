@@ -49,7 +49,8 @@ setup(
         'tests': tests_require,
         },
     tests_require=tests_require,
-    test_suite='manuel.tests.test_suite',
+    # test_suite='manuel.tests.test_module.test_suite_rst',
+    test_suite='manuel.tests.test_module.test_suite_myst',
     install_requires=[
         'setuptools',
         'six',
