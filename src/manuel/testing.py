@@ -190,7 +190,9 @@ def TestSuite(m, *paths, **kws):
         document.parse_with(m)
 
         for regions in group_regions_by_test_case(document):
-            suite.addTest(TestCase_class(m, regions, globs, **kws))
+            tc = TestCase_class(m, regions, globs, **kws)
+            tc.globs['self'] = tc
+            suite.addTest(tc)
 
     return suite
 
