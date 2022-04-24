@@ -3,7 +3,7 @@ import re
 import textwrap
 
 CODEBLOCK_START = re.compile(
-    r'(^\.\.\s*(invisible-)?code(-block)?::?\s*python\b(?:\s*\:[\w-]+\:.*\n)*)',
+    r'(^\.\.\s*(invisible-)?code(-block)?::?\s*python\b(?:\s*\:[\w-]+\:.*\n)*)',   # noqa
     re.MULTILINE,
 )
 CODEBLOCK_END = re.compile(r'(\n\Z|\n(?=\S))')
