@@ -44,7 +44,7 @@ The variables `a` and `b` can be used in the subsequent code block.
 assert b == 6
 ```
 
-For a better test feedback, you can use the methods of [`unittest.TestCase`](https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertEqual). 
+For better test feedback, you can use the methods of [`unittest.TestCase`](https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertEqual). 
 
 ```python
 self.assertEqual(b, 6)
