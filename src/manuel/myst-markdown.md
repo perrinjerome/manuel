@@ -1,7 +1,7 @@
 # MyST markdown
 
 Manuel was originally written for reStructuredText.
-Starting with the {mod}`codeblock module`, `Manuel` will successivly be extendend also for `MyST`, a `markdown` flavor.
+Starting with the {mod}`manuel.codeblock` module, Manuel will successively be extended for MyST, a Markdown flavor.
 For more information about `MyST` see [myst-parser.readthedocs.io](https://myst-parser.readthedocs.io/en/latest/).
 
 ## Code Blocks
