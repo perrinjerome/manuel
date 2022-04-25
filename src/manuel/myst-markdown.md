@@ -1,6 +1,6 @@
 # MyST markdown
 
-`Manuel` is originally written for restructuredText.
+Manuel was originally written for reStructuredText.
 Starting with the {mod}`codeblock module`, `Manuel` will successivly be extendend also for `MyST`, a `markdown` flavor.
 For more information about `MyST` see [myst-parser.readthedocs.io](https://myst-parser.readthedocs.io/en/latest/).
 
