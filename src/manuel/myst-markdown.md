@@ -52,7 +52,7 @@ self.assertEqual(b, 6)
 
 The output of `self.assertEqual(b, 9999)` would be the following.
 
-```shell
+```console
 AssertionError: 6 != 9999
 ```
 
