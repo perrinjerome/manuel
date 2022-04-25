@@ -58,7 +58,7 @@ AssertionError: 6 != 9999
 
 You can even write code in invisible code blocks.
 Invisible code blocks do not show up in the rendered documentation.
-In fact they are comments as their lines start with `%`.
+Using MyST syntax, lines that start with `%` are comments.
 The markup looks like this:
 
     % invisible-code-block: python
