@@ -15,7 +15,7 @@ You can also create your own plug-ins.
 For example, if you've ever wanted to include a large chunk of Python in a
 doctest but were irritated by all the `>>>` and `...` prompts required, you'd
 like the {mod}`manuel.myst.codeblock` module.
-It lets you execute code using MyST-style `` ```python`` directives.
+It lets you execute code using MyST-style code block directives containing unpolluted Python code.
 The markup looks like this:
 
     ```python
