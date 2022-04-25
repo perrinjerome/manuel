@@ -50,7 +50,7 @@ For better test feedback, you can use the methods of [`unittest.TestCase`](https
 self.assertEqual(b, 6)
 ```
 
-The output of `self.assertEqual(b, 9999)` would look like
+The output of `self.assertEqual(b, 9999)` would be the following.
 
 ```shell
 AssertionError: 6 != 9999
