@@ -26,7 +26,7 @@ The markup looks like this:
     ```
 
 
-To see how to get `Manuel` wired up see {ref}`getting-started`.
+To get Manuel wired up, see {ref}`getting-started`.
 Be aware to use the `MyST modules` like {mod}`manuel.myst.codeblock`.
 
 The scope of variables spans across the complete document.
