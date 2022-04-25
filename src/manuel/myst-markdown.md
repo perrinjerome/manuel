@@ -63,7 +63,7 @@ The markup looks like this:
 
     % invisible-code-block: python
     %
-    % self.assertEqual(a+b, 9999)
+    % self.assertEqual(a+b, 9)
     %
     % self.assertEqual(7 * a, 21)
 
