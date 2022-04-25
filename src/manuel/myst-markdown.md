@@ -6,7 +6,7 @@ Starting with the {mod}`manuel.codeblock` module, Manuel will successively be ex
 
 ## Code Blocks
 
-`Sphinx` and other `docutils` extensions provide a `code-block` directive, which allows inlined snippets of code in `MyST` documents.
+Sphinx and other docutils extensions provide a `code-block` directive, which allows inlined snippets of code in MyST documents.
 
 Several plug-ins are included that provide new test syntax (see
 {ref}`functionality`).
