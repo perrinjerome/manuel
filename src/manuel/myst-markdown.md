@@ -27,7 +27,7 @@ The markup looks like this:
 
 
 To get Manuel wired up, see {ref}`getting-started`.
-Be aware to use the `MyST modules` like {mod}`manuel.myst.codeblock`.
+To run doctests in MyST, use {mod}`manuel.myst.codeblock`.
 
 The scope of variables spans across the complete document.
 
