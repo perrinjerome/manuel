@@ -22,7 +22,7 @@ Development
 To work on Manuel, check out the code and then run `make` to build a development
 environment.
 
-To run the tests, run `make test`. To run all checks, run `make check`.
+To run the tests, run ``make test``. To run all checks, run ``make check``.
 
 See the `Makefile` for more useful targets.
 
