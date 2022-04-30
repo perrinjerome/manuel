@@ -27,4 +27,4 @@ To run the tests, run ``make test``. To run all checks, run ``make check``.
 See the `Makefile` for more useful targets.
 
 To build the documentation, run ``tox -e docs``.
-The build documentation is available at `_build/docs/html`.
+The build documentation is available at ``_build/docs/html``.
