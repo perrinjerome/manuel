@@ -50,6 +50,15 @@ development-utilities: ve/bin/wheel
 ########################################################################################
 # Test and lint targets
 
+dist:
+	ve/bin/python setup dist
+
+upload:
+	ve/bin/twine upload --repository manuel $(DIST)
+
+########################################################################################
+# Test and lint targets
+
 .PHONY: pylint
 pylint:
 	ve/bin/pylint $(source_code) --output-format=colorized
