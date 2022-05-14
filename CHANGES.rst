@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-1.11.0 (unreleased)
+1.11.0 (2022-05-14)
 -------------------
 
 - Fix test detection in Python 2 which was broken since 1.10.0.
