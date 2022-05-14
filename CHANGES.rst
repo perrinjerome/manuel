@@ -1,10 +1,10 @@
 CHANGES
 =======
 
-1.12.0 (unreleased)
+1.11.1 (2022-05-14)
 -------------------
 
-Nothing yet.
+Fix brown-bag release.
 
 
 1.11.0 (2022-05-14)
