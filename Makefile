@@ -50,11 +50,11 @@ development-utilities: ve/bin/wheel
 ########################################################################################
 # Test and lint targets
 
-.PHONY:
+.PHONY: dist
 dist:
-	ve/bin/python setup dist
+	ve/bin/python setup.py sdist
 
-.PHONY:
+.PHONY: upload
 upload:
 	ve/bin/twine upload --repository manuel $(DIST)
 
