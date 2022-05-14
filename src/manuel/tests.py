@@ -4,6 +4,7 @@ import doctest
 import manuel
 import manuel.capture
 import manuel.codeblock
+import manuel.myst.codeblock
 import manuel.doctest
 import manuel.ignore
 import manuel.testcase
@@ -67,8 +68,9 @@ def turtle_on_the_bottom_test():
     """
 
 
-def test_suite():
-    tests = ['index.txt', 'table-example.txt', 'README.txt', 'bugs.txt', 'capture.txt']
+def suite_rst():
+    tests = ['index.txt', 'table-example.txt', 'README.txt', 'bugs.txt', 'capture.txt', 'myst-markdown.md']
+    print("*** suite_rst. tests", tests)
 
     optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
 
@@ -79,13 +81,35 @@ def test_suite():
     m += manuel.testcase.SectionManuel()
     # The apparently redundant "**dict()" is to make this code compatible with
     # Python 2.5 -- it would generate a SyntaxError otherwise.
-    suite = manuel.testing.TestSuite(
+    return manuel.testing.TestSuite(
         m, *tests, **dict(globs={'path_to_test': os.path.join(here, 'bugs.txt')})
     )
 
+
+def suite_myst():
+    tests = ['myst-markdown.md']
+    print("*** suite_myst. tests", tests)
+
+    optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
+
+    m = manuel.doctest.Manuel(optionflags=optionflags, checker=checker)
+    m += manuel.myst.codeblock.Manuel()
+    # The apparently redundant "**dict()" is to make this code compatible with
+    # Python 2.5 -- it would generate a SyntaxError otherwise.
+    return manuel.testing.TestSuite(
+        m,
+        *tests,
+        **dict(globs={
+            'path_to_test': os.path.join(here, 'bugs.txt')
+            })
+    )
+
+
+def test_suite():
     return unittest.TestSuite(
         (
-            suite,
+            suite_rst(),
+            suite_myst(),
             doctest.DocTestSuite(),
         )
     )

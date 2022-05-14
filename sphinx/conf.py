@@ -1,4 +1,8 @@
-source_suffix = '.txt'
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'restructuredtext',
+    '.md': 'markdown',
+}
 master_doc = 'index'
 project = 'Manuel'
 copyright = 'Benji York'
@@ -13,3 +17,7 @@ html_title = 'Manuel Documentation'
 todo_include_todos = False
 exclude_dirnames = ['manuel.egg-info']
 unused_docs = ['manuel/capture']
+extensions = [
+    "myst_parser",
+    "sphinx_copybutton",
+]
