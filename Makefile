@@ -94,7 +94,6 @@ tox-dist: assert-one-dist
 
 .PHONY: upload
 upload: assert-one-dist
-	dist := $(shell find dist -name 'manuel-*.tar.gz')
 	ve/bin/twine upload --repository manuel $$(find dist -name 'manuel-*.tar.gz')
 
 .PHONY: release
