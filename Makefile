@@ -74,7 +74,7 @@ assert-version-in-changelog:
 
 .PHONY: assert-no-changes
 assert-no-changes:
-	@if git status --porcelain; then \
+	@if ! output=$$(git status --porcelain) || [ -n "$$output" ]; then \
 	    echo There must not be any ucomitted changes.; \
 	    exit 1; \
 	fi
