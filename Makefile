@@ -104,6 +104,7 @@ release: dist assert-one-dist tox-dist upload
 release: assert-no-unreleased-changes assert-version-in-changelog assert-no-changes
 	### generate a distribution, tag it, and upload it
 	git tag $$(ve/bin/python setup.py --version)
+	git push origin
 	git push origin --tags
 else
 release:
