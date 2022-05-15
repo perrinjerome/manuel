@@ -88,6 +88,7 @@ tox-dist: assert-one-dist
 	### check to see if the distribution passes the tests
 	rm -rf tmp
 	mkdir tmp
+	dist=$$(find dist -name 'manuel-*.tar.gz')
 	tar xzvf $(dist) -C tmp
 	cd tmp/manuel-*; PYTHONPATH= tox
 	rm -rf tmp
