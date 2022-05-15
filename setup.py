@@ -24,7 +24,7 @@ tests_require = ['zope.testing']
 
 setup(
     name='manuel',
-    version='1.11.1',
+    version='1.11.2',
     url='http://pypi.python.org/pypi/manuel',
     packages=find_packages('src'),
     package_dir={'': 'src'},
