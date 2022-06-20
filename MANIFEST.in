@@ -3,9 +3,7 @@ recursive-include src *.txt
 recursive-include docs *
 recursive-include sphinx *.py
 include *.rst
-include tox.ini
-include bootstrap.py
-include buildout.cfg
+include Makefile
+include constraints.txt
 include *.yaml
 include .coveragerc
-include .circleci/*

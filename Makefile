@@ -11,6 +11,8 @@ seperator ?= $(shell printf %${COLUMNS}s | tr " " "═")
 
 platform := $(shell python -c 'import sys; print(sys.platform)')
 
+PYTHON_VERSION ?= 3
+
 export PIP_DISABLE_PIP_VERSION_CHECK=1
 pip-install := ve/bin/pip --no-input install --constraint constraints.txt
 pip-check := ve/bin/pip show -q
@@ -29,7 +31,7 @@ isort := ve/bin/isort --multi-line=VERTICAL_HANGING_INDENT --trailing-comma --no
 build: ve development-utilities
 
 ve:
-	python3.9 -m venv ve
+	python$(PYTHON_VERSION) -m venv ve
 
 ve/bin/%:
 	# Install development utility "$*"
@@ -45,7 +47,6 @@ development-utilities: ve/bin/mypy
 development-utilities: ve/bin/pydocstyle
 development-utilities: ve/bin/pyinstaller
 development-utilities: ve/bin/pylint
-development-utilities: ve/bin/tox
 development-utilities: ve/bin/twine
 development-utilities: ve/bin/wheel
 
@@ -84,13 +85,13 @@ assert-no-changes:
 dist:
 	ve/bin/python setup.py sdist
 
-.PHONY: tox-dist
-tox-dist: assert-one-dist
+.PHONY: test-dist
+test-dist: assert-one-dist
 	### check to see if the distribution passes the tests
 	rm -rf tmp
 	mkdir tmp
 	tar xzvf $$(find dist -name 'manuel-*.tar.gz') -C tmp
-	cd tmp/manuel-*; PYTHONPATH= tox
+	cd tmp/manuel-* && make && make check
 	rm -rf tmp
 
 .PHONY: upload
@@ -99,7 +100,7 @@ upload: assert-one-dist
 
 .PHONY: release
 ifeq '$(shell git rev-parse --abbrev-ref HEAD)' 'master'
-release: dist assert-one-dist tox-dist upload
+release: dist assert-one-dist test-dist upload
 release: assert-no-unreleased-changes assert-version-in-changelog assert-no-changes
 	### generate a distribution, tag it, and upload it
 	git tag $$(ve/bin/python setup.py --version)
@@ -138,7 +139,7 @@ isort-check:
 	$(isort) $(source_code) --diff --check
 
 .PHONY: lint
-lint: mypy pylint black-check flake8 isort-check
+lint: black-check isort-check
 
 .PHONY: test
 test:
@@ -149,12 +150,8 @@ coverage:
 	ve/bin/coverage run --branch setup.py test
 	PYTHONWARNINGS=ignore ve/bin/coverage report --ignore-errors --fail-under=97 --show-missing --skip-empty
 
-.PHONY: tox
-tox:
-	ve/bin/tox
-
 .PHONY: check
-check: tox coverage black-check isort-check
+check: test lint coverage
 
 ########################################################################################
 # Sorce code formatting targets

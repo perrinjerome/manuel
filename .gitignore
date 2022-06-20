@@ -7,7 +7,6 @@ src/manuel.egg-info/
 parts/
 *.pyc
 __pycache__/
-.tox/
 .coverage
 coverage.xml
 .eggs/
