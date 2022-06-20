@@ -38,6 +38,7 @@ ve/bin/%:
 # Utilities we use during development.
 .PHONY: development-utilities
 development-utilities: ve/bin/black
+development-utilities: ve/bin/coverage
 development-utilities: ve/bin/flake8
 development-utilities: ve/bin/isort
 development-utilities: ve/bin/mypy
@@ -143,12 +144,17 @@ lint: mypy pylint black-check flake8 isort-check
 test:
 	ve/bin/python setup.py test
 
+.PHONY: coverage
+coverage:
+	ve/bin/coverage run --branch setup.py test
+	PYTHONWARNINGS=ignore ve/bin/coverage report --ignore-errors --fail-under=97 --show-missing --skip-empty
+
 .PHONY: tox
 tox:
 	ve/bin/tox
 
 .PHONY: check
-check: tox
+check: tox coverage black-check isort-check
 
 ########################################################################################
 # Sorce code formatting targets

@@ -1,9 +1,7 @@
 import re
 import textwrap
-
 from manuel import Manuel as BaseManuel
 from manuel.codeblock import CodeBlock, execute_code_block
-
 
 CODEBLOCK_START = re.compile(
     r"((^```python)|(^% invisible-code-block:\s+python)$)",

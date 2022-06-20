@@ -4,9 +4,9 @@ import doctest
 import manuel
 import manuel.capture
 import manuel.codeblock
-import manuel.myst.codeblock
 import manuel.doctest
 import manuel.ignore
+import manuel.myst.codeblock
 import manuel.testcase
 import manuel.testing
 import os.path
@@ -69,7 +69,14 @@ def turtle_on_the_bottom_test():
 
 
 def suite_rst():
-    tests = ['index.txt', 'table-example.txt', 'README.txt', 'bugs.txt', 'capture.txt', 'myst-markdown.md']
+    tests = [
+        'index.txt',
+        'table-example.txt',
+        'README.txt',
+        'bugs.txt',
+        'capture.txt',
+        'myst-markdown.md',
+    ]
     print("*** suite_rst. tests", tests)
 
     optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
@@ -97,11 +104,7 @@ def suite_myst():
     # The apparently redundant "**dict()" is to make this code compatible with
     # Python 2.5 -- it would generate a SyntaxError otherwise.
     return manuel.testing.TestSuite(
-        m,
-        *tests,
-        **dict(globs={
-            'path_to_test': os.path.join(here, 'bugs.txt')
-            })
+        m, *tests, **dict(globs={'path_to_test': os.path.join(here, 'bugs.txt')})
     )
 
 
