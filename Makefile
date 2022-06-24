@@ -98,9 +98,13 @@ test-dist: assert-one-dist
 upload: assert-one-dist
 	ve/bin/twine upload --repository manuel $$(find dist -name 'manuel-*.tar.gz')
 
+.PHONY: badges
+badges: ve/bin/genbadge
+	ve/bin/python bin/genbadge coverage -i coverage.xml -o badges/coverage-badge.svg
+
 .PHONY: release
 ifeq '$(shell git rev-parse --abbrev-ref HEAD)' 'master'
-release: dist assert-one-dist test-dist upload
+release: badges dist assert-one-dist test-dist upload
 release: assert-no-unreleased-changes assert-version-in-changelog assert-no-changes
 	### generate a distribution, tag it, and upload it
 	git tag $$(ve/bin/python setup.py --version)
@@ -149,6 +153,7 @@ test:
 coverage:
 	ve/bin/coverage run --branch setup.py test
 	PYTHONWARNINGS=ignore ve/bin/coverage report --ignore-errors --fail-under=97 --show-missing --skip-empty
+	ve/bin/coverage xml  # the XML output file is used by the "badges" target
 
 .PHONY: check
 check: test lint coverage

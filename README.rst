@@ -1,7 +1,7 @@
-.. image:: https://coveralls.io/repos/github/benji-york/manuel/badge.svg?branch=master
-   :target: https://coveralls.io/github/benji-york/manuel?branch=master
-
 .. image:: https://img.shields.io/pypi/v/manuel.svg
+    :target: https://pypi.python.org/pypi/manuel
+
+.. image:: badges/coverage-badge.svg
     :target: https://pypi.python.org/pypi/manuel
 
 .. image:: https://img.shields.io/pypi/pyversions/manuel.svg

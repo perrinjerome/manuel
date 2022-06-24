@@ -1,0 +1,24 @@
+"""This is a hack to get the coverage percentage reported in whole numbers."""
+import re
+import sys
+from genbadge import utils_coverage
+from genbadge import utils_badge
+
+def my_get_coverage_badge(cov_stats):
+    """Generate a coverage badge they way I like it.
+
+    The original included two decimal places in the percentage.
+    I just want an integer percentage.
+    """
+
+    color = utils_coverage.get_color(cov_stats)
+    right_txt = '%.0f%%' % (cov_stats.total_coverage,)
+    return utils_badge.Badge(left_txt="coverage", right_txt=right_txt, color=color)
+
+utils_coverage.get_coverage_badge = my_get_coverage_badge
+
+import genbadge.main
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(genbadge.main.genbadge())
