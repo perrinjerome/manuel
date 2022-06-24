@@ -33,6 +33,9 @@ build: ve development-utilities
 ve:
 	python$(PYTHON_VERSION) -m venv ve
 
+ve/bin/genbadge:
+	$(pip-install) genbadge[coverage]
+
 ve/bin/%:
 	# Install development utility "$*"
 	$(pip-install) $*
@@ -42,6 +45,7 @@ ve/bin/%:
 development-utilities: ve/bin/black
 development-utilities: ve/bin/coverage
 development-utilities: ve/bin/flake8
+development-utilities: ve/bin/genbadge
 development-utilities: ve/bin/isort
 development-utilities: ve/bin/mypy
 development-utilities: ve/bin/pydocstyle
@@ -99,7 +103,7 @@ upload: assert-one-dist
 	ve/bin/twine upload --repository manuel $$(find dist -name 'manuel-*.tar.gz')
 
 .PHONY: badges
-badges: ve/bin/genbadge
+badges:
 	ve/bin/python bin/genbadge coverage -i coverage.xml -o badges/coverage-badge.svg
 
 .PHONY: release
@@ -152,8 +156,8 @@ test:
 .PHONY: coverage
 coverage:
 	ve/bin/coverage run --branch setup.py test
-	PYTHONWARNINGS=ignore ve/bin/coverage report --ignore-errors --fail-under=97 --show-missing --skip-empty
 	ve/bin/coverage xml  # the XML output file is used by the "badges" target
+	PYTHONWARNINGS=ignore ve/bin/coverage report --ignore-errors --fail-under=97 --show-missing --skip-empty
 
 .PHONY: check
 check: test lint coverage
