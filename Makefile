@@ -3,8 +3,10 @@ SHELL := bash
 .DEFAULT_GOAL := build
 .DELETE_ON_ERROR:  # If a recipe to build a file exits with an error, delete the file.
 .SUFFIXES:  # Remove the default suffixes which are for compiling C projects.
+.NOTPARALLEL:  # Disable use of parallel subprocesses.
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
+
 
 export COLUMNS ?= 70
 seperator ?= $(shell printf %${COLUMNS}s | tr " " "═")
@@ -78,6 +80,14 @@ assert-version-in-changelog:
 	    exit 1; \
 	fi
 
+.PHONY: assert-matching-versions
+assert-matching-versions:
+	# verify that the top-most version in the change log matches what is in setup.py
+	@env \
+	    CHANGE_LOG_VERSION=$$(grep '^[^ ]\+ (20\d\d-\d\d-\d\d)' CHANGES.rst | head -n 1 | cut -d' ' -f1) \
+	    SETUP_VERSION=$$(ve/bin/python setup.py --version) \
+	    bash -c 'test $$CHANGE_LOG_VERSION = $$SETUP_VERSION'
+
 .PHONY: assert-no-changes
 assert-no-changes:
 	@if ! output=$$(git status --porcelain) || [ -n "$$output" ]; then \
@@ -90,8 +100,8 @@ dist:
 	ve/bin/python setup.py sdist
 
 .PHONY: test-dist
-test-dist: assert-one-dist
-	### check to see if the distribution passes the tests
+test-dist:
+	# check to see if the distribution passes the tests
 	rm -rf tmp
 	mkdir tmp
 	tar xzvf $$(find dist -name 'manuel-*.tar.gz') -C tmp
@@ -108,9 +118,10 @@ badges:
 
 .PHONY: release
 ifeq '$(shell git rev-parse --abbrev-ref HEAD)' 'master'
-release: badges dist assert-one-dist test-dist upload
-release: assert-no-unreleased-changes assert-version-in-changelog assert-no-changes
-	### generate a distribution, tag it, and upload it
+release: clean-dist assert-no-unreleased-changes assert-matching-versions \
+    assert-version-in-changelog badges dist assert-one-dist test-dist \
+    assert-no-changes upload
+	# now that a release has happened, tag the current HEAD as that release
 	git tag $$(ve/bin/python setup.py --version)
 	git push origin
 	git push origin --tags

@@ -1,7 +1,7 @@
 CHANGES
 =======
 
-1.12.0 (2022-06-24)
+1.12.3 (2022-06-24)
 -------------------
 
 - Modernize internal project structure; drop tox; no user-visible changes (hopefully).
