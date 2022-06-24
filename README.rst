@@ -1,6 +1,3 @@
-.. image:: https://travis-ci.org/benji-york/manuel.png?branch=master
-   :target: https://travis-ci.org/benji-york/manuel
-
 .. image:: https://coveralls.io/repos/github/benji-york/manuel/badge.svg?branch=master
    :target: https://coveralls.io/github/benji-york/manuel?branch=master
 
