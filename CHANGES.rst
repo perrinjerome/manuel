@@ -1,6 +1,12 @@
 CHANGES
 =======
 
+1.12.0 (unreleased)
+-------------------
+
+Modernize internal project structure; no user-visible changes (hopefully).
+
+
 1.11.2 (2022-05-15)
 -------------------
 
