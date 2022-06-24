@@ -1,10 +1,12 @@
 CHANGES
 =======
 
-1.12.0 (unreleased)
+1.12.0 (2022-06-24)
 -------------------
 
-Modernize internal project structure; no user-visible changes (hopefully).
+- Modernize internal project structure; drop tox; no user-visible changes (hopefully).
+- Rework coverage badge generation.
+- Drop Travis CI badge (the project is using GitHub for CI now)
 
 
 1.11.2 (2022-05-15)
