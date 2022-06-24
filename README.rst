@@ -1,6 +1,3 @@
-.. image:: https://img.shields.io/pypi/v/manuel.svg
-    :target: https://pypi.python.org/pypi/manuel
-
 .. image:: https://raw.githubusercontent.com/benji-york/manuel/master/badges/coverage-badge.svg
     :target: https://pypi.python.org/pypi/manuel
 
