@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 import doctest as real_doctest
 import functools
 import inspect
