@@ -37,7 +37,6 @@ requests==2.28.0
 requests-toolbelt==0.9.1
 rfc3986==2.0.0
 rich==12.4.4
-six==1.16.0
 snowballstemmer==2.2.0
 tomli==2.0.1
 twine==4.0.1
