@@ -1076,9 +1076,8 @@ identify them with a marker::
     >>> m = manuel.testcase.MarkerManuel()
     >>> m += manuel.doctest.Manuel()
     >>> document.parse_with(m)
-    >>> import six
     >>> for regions in manuel.testing.group_regions_by_test_case(document):
-    ...     six.print_(regions.location, regions.id)
+    ...     print(regions.location, regions.id)
     <memory> None
     <memory> first-named-test-case
     <memory> second-named-test-case
@@ -1127,9 +1126,8 @@ of test case identification:
 .. make sure above finds all the test cases appropriately
 
     >>> document.parse_with(m)
-    >>> import six
     >>> for regions in manuel.testing.group_regions_by_test_case(document):
-    ...     six.print_(regions.location, regions.id)
+    ...     print(regions.location, regions.id)
     <memory> None
     <memory> First Section
     <memory> first-named-test-case

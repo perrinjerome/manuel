@@ -1,15 +1,13 @@
-from __future__ import absolute_import
-
 import doctest
 import manuel
 import os.path
-import six
+from io import StringIO
 
 DocTestRunner = doctest.DocTestRunner
 DebugRunner = doctest.DebugRunner
 
 
-class DocTestResult(six.StringIO):
+class DocTestResult(StringIO):
     pass
 
 
