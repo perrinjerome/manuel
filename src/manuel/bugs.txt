@@ -218,6 +218,34 @@ instead:
     <memory>
 
 
+OutputChecker and debug
+-----------------------
+
+When running in debug mode, such as when using the ``-D`` option of
+``zope.testrunner``, the ``outputchecker`` of ``manuel.doctest.Manuel``
+was ignored.
+
+.. code-block:: python
+    import doctest
+    import os.path
+    import manuel.doctest
+    import manuel.testing
+    doc = os.path.join(__file__, '..', 'doc3.ex')
+
+    checked_outputs = []
+    class CustomChecker(doctest.OutputChecker):
+        def check_output(self, want, got, optionflags):
+            checked_outputs.append((want, got))
+            return True
+
+
+    m = manuel.doctest.Manuel(checker=CustomChecker())
+    >>> suite = manuel.testing.TestSuite(m, doc)
+    >>> suite.debug()
+    >>> checked_outputs
+    [('2\n', '1\n')]
+
+
 DocTestRunner peaks at sys.argv
 -------------------------------
 
