@@ -103,7 +103,9 @@ class Manuel(manuel.Manuel):
         self.runner = DocTestRunner(
             optionflags=optionflags, checker=checker, verbose=False
         )
-        self.debug_runner = DebugRunner(optionflags=optionflags, verbose=False)
+        self.debug_runner = DebugRunner(
+            optionflags=optionflags, checker=checker, verbose=False
+        )
 
         def evaluate_closure(region, document, globs):
             # capture "self"
